@@ -1,0 +1,3 @@
+class MapquestFacade
+  
+end
