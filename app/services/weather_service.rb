@@ -1,7 +1,7 @@
 class WeatherService
   
   def get_weather_data(lat, lon)
-    get_url("/v1/current.json?q=#{lat},#{lon}")
+    get_url("/v1/forecast.json?q=#{lat},#{lon}")
   end
 
 
@@ -19,4 +19,4 @@ class WeatherService
     end
 end
 
-# http://api.weatherapi.com/v1/forecast.json?key=cbf56bfdfdd347bfbb9203506231006&q=denver+co&days=5
+#http://api.weatherapi.com/v1/forecast.json?key={{weather_api_key}}&q=39.74001,-104.99202&days=5
