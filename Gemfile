@@ -49,7 +49,7 @@ group :development, :test do
   gem "rspec-rails"
   gem "jsonapi-serializer"
   gem "webmock"
-  gem "vcr"
+  # gem "vcr"
 end
 
 group :development do

@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Mapquest Service' do  
-  describe 'instance methods', :vcr do
+  describe 'instance methods' do
     it 'returns lat and long for a given location' do
       mapquest_service = MapquestService.new
-      mapquest_results = mapquest_service.get_coordinates("Denver,co")
+      mapquest_results = mapquest_service.get_mapquest_data("Denver,co")
 
       expect(mapquest_results).to be_a(Hash)
       expect(mapquest_results).to have_key(:results)

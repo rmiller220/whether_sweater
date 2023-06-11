@@ -1,6 +1,8 @@
 class Mapquest
+  attr_reader :lat, :lon
 
-  def initialize(location)
-    @location = location
+  def initialize(data)
+    @lat = data[:lat]
+    @lon = data[:lng]
   end
 end

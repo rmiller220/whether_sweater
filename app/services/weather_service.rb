@@ -1,9 +1,7 @@
-class WeatherSearchService
-  def initialize(location)
-    
-  end
-  def get_forecast(lat, lon)
-
+class WeatherService
+  
+  def get_weather_data(lat, lon)
+    get_url("/v1/current.json?q=#{lat},#{lon}")
   end
 
 
@@ -14,10 +12,9 @@ class WeatherSearchService
     end
 
     def conn
-      Faraday.new(url: "http://api.weatherapi.com/v1/forecast.json?") do |faraday|
+      Faraday.new(url: "http://api.weatherapi.com") do |faraday|
         faraday.params["key"] = ENV["WEATHER_API_KEY"]
         faraday.params["days"] = 5
-        # faraday.adapter Faraday.default_adapter
       end
     end
 end

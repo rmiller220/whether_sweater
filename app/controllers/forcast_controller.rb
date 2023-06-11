@@ -1,3 +1,0 @@
-class ForecastController
-  
-end

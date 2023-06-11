@@ -1,6 +1,6 @@
 class MapquestService
 
-  def get_coordinates(location)
+  def get_mapquest_data(location)
     get_url("geocoding/v1/address?location=#{location}")
   end
 
