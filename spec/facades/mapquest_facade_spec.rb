@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Mapquest Service' do
-  describe 'instance methods'do
+  describe 'instance methods' do
     it 'returns lat and long for a given location' do
       search = ("denver,co")
       coordinates = MapquestFacade.new(search).find_coordinates
