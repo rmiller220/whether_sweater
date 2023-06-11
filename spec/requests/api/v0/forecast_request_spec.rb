@@ -4,39 +4,46 @@ RSpec.describe 'Forecast API', type: :request do
   describe 'GET /api/v0/forecast' do
     it 'returns a forecast for a given location' do
 
-      # headers = {"CONTENT_TYPE" => "application/json", "ACCEPT" => "application/json"}
+      headers = {"CONTENT_TYPE" => "application/json", "ACCEPT" => "application/json"}
       
-      get "/api/v0/forecast?location=cincinatti,oh"#, headers: headers
+      get "/api/v0/forecast?location=cincinatti,oh", headers: headers
       
       expect(response).to be_successful
       expect(response.status).to eq(200)
-      
+
       forecast = JSON.parse(response.body, symbolize_names: true)
-      
+
       expect(forecast).to be_a(Hash)
       expect(forecast).to have_key(:data)
       expect(forecast[:data]).to be_a(Hash)
       expect(forecast[:data]).to have_key(:id)
+      expect(forecast[:data][:id]).to eq('null')
+      expect(forecast[:data]).to have_key(:type)
+      expect(forecast[:data][:type]).to eq('forecast')
       expect(forecast[:data]).to have_key(:attributes)
       expect(forecast[:data][:attributes]).to be_a(Hash)
       expect(forecast[:data][:attributes]).to have_key(:current_weather)
       expect(forecast[:data][:attributes][:current_weather]).to be_a(Hash)
-      expect(forecast[:data][:attributes][:current_weather]).to have_key(:datetime)
-      expect(forecast[:data][:attributes][:current_weather][:datetime]).to be_a(String)
-      expect(forecast[:data][:attributes][:current_weather]).to have_key(:temperature)
-      expect(forecast[:data][:attributes][:current_weather][:temperature]).to be_a(Float)
-      expect(forecast[:data][:attributes][:current_weather]).to have_key(:feels_like)
-      expect(forecast[:data][:attributes][:current_weather][:feels_like]).to be_a(Float)
+      expect(forecast[:data][:attributes][:current_weather]).to have_key(:last_updated)
+      expect(forecast[:data][:attributes][:current_weather][:last_updated]).to be_a(String)
+      expect(forecast[:data][:attributes][:current_weather]).to have_key(:temp_f)
+      expect(forecast[:data][:attributes][:current_weather][:temp_f]).to be_a(Float)
+      expect(forecast[:data][:attributes][:current_weather]).to have_key(:feelslike_f)
+      expect(forecast[:data][:attributes][:current_weather][:feelslike_f]).to be_a(Float)
       expect(forecast[:data][:attributes][:current_weather]).to have_key(:humidity)
-      expect(float_or_int?(forecast[:data][:attributes][:current_weather][:humidity])).to eq(true)
+      expect(forecast[:data][:attributes][:current_weather][:humidity]).to be_an(Integer)
       expect(forecast[:data][:attributes][:current_weather]).to have_key(:uvi)
-      expect(float_or_int?(forecast[:data][:attributes][:current_weather][:uvi])).to eq(true)
-      expect(forecast[:data][:attributes][:current_weather]).to have_key(:visibility)
-      expect(float_or_int?(forecast[:data][:attributes][:current_weather][:visibility])).to eq(true)
-      expect(forecast[:data][:attributes][:current_weather]).to have_key(:conditions)
-      expect(forecast[:data][:attributes][:current_weather][:conditions]).to be_a(String)
+      expect(forecast[:data][:attributes][:current_weather][:uvi]).to be_a(Float)
+      expect(forecast[:data][:attributes][:current_weather]).to have_key(:visibility_miles)
+      expect(forecast[:data][:attributes][:current_weather][:visibility_miles]).to be_a(Float)
+      expect(forecast[:data][:attributes][:current_weather]).to have_key(:condition_text)
+      expect(forecast[:data][:attributes][:current_weather][:condition_text]).to be_a(String)
       expect(forecast[:data][:attributes][:current_weather]).to have_key(:icon)
       expect(forecast[:data][:attributes][:current_weather][:icon]).to be_a(String)
+      expect(forecast[:data][:attributes]).to_not have_key(:wind_mph)
+      expect(forecast[:data][:attributes]).to_not have_key(:pressure_in)
+
+      expect(forecast[:data][:attributes]).to have_key(:daily_weather)
       expect(forecast[:data][:attributes][:daily_weather]).to be_an(Array)
       expect(forecast[:data][:attributes][:daily_weather].count).to eq(5)
       
@@ -56,8 +63,11 @@ RSpec.describe 'Forecast API', type: :request do
         expect(day[:conditions]).to be_a(String)
         expect(day).to have_key(:icon)
         expect(day[:icon]).to be_a(String)
+        expect(day).to_not have_key(:avgtemp_f)
+        expect(day).to_not have_key(:maxwind_mph)
       end
       
+      expect(forecast[:data][:attributes]).to have_key(:hourly_weather)
       expect(forecast[:data][:attributes][:hourly_weather]).to be_an(Array)
       expect(forecast[:data][:attributes][:hourly_weather].count).to eq(24)
       expect(forecast[:data][:attributes][:hourly_weather].first).to be_a(Hash)
@@ -65,12 +75,16 @@ RSpec.describe 'Forecast API', type: :request do
         expect(hour).to be_a(Hash)
         expect(hour).to have_key(:time)
         expect(hour[:time]).to be_a(String)
-        expect(hour).to have_key(:temperature)
-        expect(hour[:temperature]).to be_a(Float)
+        expect(hour).to have_key(:temp_f)
+        expect(hour[:temp_f]).to be_a(Float)
         expect(hour).to have_key(:conditions)
         expect(hour[:conditions]).to be_a(String)
         expect(hour).to have_key(:icon)
         expect(hour[:icon]).to be_a(String)
+        expect(hour).to_not have_key(:wind_mph)
+        expect(hour).to_not have_key(:humidity)
+        expect(hour).to_not have_key(:feelslike_f)
+        expect(hour).to_not have_key(:visibility_miles)
       end
     end
   end
