@@ -18,5 +18,11 @@ RSpec.describe 'Mapquest Service' do
       expect(mapquest_results[:results][0][:locations][0][:latLng]).to have_key(:lng)
       expect(mapquest_results[:results][0][:locations][0][:latLng][:lng]).to be_a(Float)
     end
+
+    it 'returns travel time for a given origin and destination' do
+      mapquest_service = MapquestService.new
+      directions_results = mapquest_service.get_directions_data("NewYork,NY", "Pueblo,co")
+      require 'pry'; binding.pry
+    end
   end
 end
