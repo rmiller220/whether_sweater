@@ -23,6 +23,19 @@ RSpec.describe 'Book Search Service' do
         expect(book).to have_key(:publisher)
         expect(book[:publisher]).to be_an(Array)
         expect(book[:publisher][0]).to be_a(String)
+        # require 'pry'; binding.pry
+        expect(book).to have_key(:publish_date)
+        expect(book[:publish_date]).to be_an(Array)
+        expect(book[:publish_date][0]).to be_a(String)
+        expect(book).to have_key(:publish_year)
+        expect(book[:publish_year]).to be_an(Array)
+        expect(book[:publish_year][0]).to be_a(Integer)
+        expect(book).to have_key(:first_publish_year)
+        expect(book[:first_publish_year]).to be_a(Integer)
+        expect(book).to have_key(:ebook_count_i)
+        expect(book[:ebook_count_i]).to be_a(Integer)
+        expect(book).to have_key(:ebook_access)
+        expect(book[:ebook_access]).to be_a(String)
       end
     end
   end

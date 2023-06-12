@@ -4,8 +4,9 @@ class BooksFacade
     data = json[:results][0][:locations][0][:latLng]
     city_coords = Mapquest.new(data)
     weather_data = WeatherService.new.get_weather_data(city_coords.lat, city_coords.lon)
-    # require 'pry'; binding.pry
+
     destination = location
+
     forecast = 
      {
       summary: weather_data[:current][:condition][:text],
@@ -23,6 +24,7 @@ class BooksFacade
         isbn: book[:isbn]
       }
     end
+    
     Books.new(location, forecast, books_found, books_info)
   end
 end
