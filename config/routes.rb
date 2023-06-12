@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     namespace :v0 do
       resources :forecast, only: [:index]
       post :users, to: 'users#create'
-      post :sessions, to: 'sessions#create'
+      post :sessions, to: 'sessions#login'
       get '/book-search', to: 'book_search#index'
 
     end
