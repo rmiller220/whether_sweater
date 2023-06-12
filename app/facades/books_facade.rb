@@ -14,10 +14,8 @@ class BooksFacade
 
     books = BookSearchService.new.get_books_data(location, limit)
     
-    books_found = 
-    {
-      numFound: books[:numFound],
-    }
+    books_found = books[:numFound]
+    
     books_info = books[:docs].map do |book|
       {
         title: book[:title],
