@@ -4,7 +4,7 @@ RSpec.describe 'Book Search Service' do
   describe 'instance methods' do
     it 'returns a list of books for a given search' do
       book_search_service = BookSearchService.new
-      book_search_results = book_search_service.get_books_data("Denver,co", "5")
+      book_search_results = book_search_service.get_books_data("Denver,co", 5)
 
       expect(book_search_results).to be_a(Hash)
       expect(book_search_results).to have_key(:numFound)
