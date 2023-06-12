@@ -8,6 +8,8 @@ Rails.application.routes.draw do
       resources :forecast, only: [:index]
       post :users, to: 'users#create'
       post :sessions, to: 'sessions#create'
+      get :book_search, to: 'book_search#index'
+      
     end
   end
 end
