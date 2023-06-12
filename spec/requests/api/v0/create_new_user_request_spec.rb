@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Create new user request' do
   describe 'POST /api/v0/users' do
     it 'creates a new user' do
-      post '/api/v0/users', params: {email: 'bob@bob.bob', password: 'bob', password_confirmation: 'bob'}
+      post '/api/v0/users', params: {email: 'bob@bob.bob', password: 'bob', password_confirmation: 'bob'}.to_json, headers: { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
 
       expect(response).to be_successful
       expect(response.status).to eq(201)
@@ -30,7 +30,7 @@ RSpec.describe 'Create new user request' do
     it 'returns a 400 error if email is already taken' do
       user1 = User.create!(email: 'bob@bob.bob', password: 'bob', password_confirmation: 'bob')
 
-      post '/api/v0/users', params: {email: 'bob@bob.bob', password: '123', password_confirmation: '123'}
+      post '/api/v0/users', params: {email: 'bob@bob.bob', password: '123', password_confirmation: '123'}.to_json, headers: { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
 
       expect(response).to_not be_successful
       expect(response.status).to eq(400)
@@ -42,7 +42,7 @@ RSpec.describe 'Create new user request' do
 
     it 'returns a 400 error if password and password confirmation do not match' do
 
-      post '/api/v0/users', params: {email: 'bob@bob.bob', password: '123', password_confirmation: 'bob'}
+      post '/api/v0/users', params: {email: 'bob@bob.bob', password: '123', password_confirmation: 'bob'}.to_json, headers: { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
 
       expect(response).to_not be_successful
       expect(response.status).to eq(400)
@@ -54,7 +54,7 @@ RSpec.describe 'Create new user request' do
 
     it 'returns a 400 error if email is not provided' do
 
-      post '/api/v0/users', params: {password: '123', password_confirmation: '123'}
+      post '/api/v0/users', params: {password: '123', password_confirmation: '123'}.to_json, headers: { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
 
       expect(response).to_not be_successful
       expect(response.status).to eq(400)  
@@ -66,7 +66,7 @@ RSpec.describe 'Create new user request' do
 
     it 'returns a 400 error if password is not provided' do
 
-      post '/api/v0/users', params: {email: 'bob@bob.bob'}
+      post '/api/v0/users', params: {email: 'bob@bob.bob'}.to_json, headers: { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
 
       expect(response).to_not be_successful
       expect(response.status).to eq(400)
@@ -78,7 +78,7 @@ RSpec.describe 'Create new user request' do
 
     it 'returns a 400 error if password confirmation is not provided' do
 
-      post '/api/v0/users', params: {email: 'bob@bob.bob', password: '123'}
+      post '/api/v0/users', params: {email: 'bob@bob.bob', password: '123'}.to_json, headers: { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
       
       expect(response).to_not be_successful
       expect(response.status).to eq(400)
@@ -90,7 +90,7 @@ RSpec.describe 'Create new user request' do
 
     it 'returns a 400 error if password is blank' do
 
-      post '/api/v0/users', params: {email: 'bob@bob.bob', password_confirmation: '123'}
+      post '/api/v0/users', params: {email: 'bob@bob.bob', password_confirmation: '123'}.to_json, headers: { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
 
       expect(response).to_not be_successful
       expect(response.status).to eq(400)
