@@ -12,6 +12,3 @@ class BookSearchService
     Faraday.new(url: 'https://openlibrary.org/')
   end
 end
-
-
-# https://openlibrary.org/search.json?q=denver,co&limit=5
