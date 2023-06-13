@@ -12,38 +12,43 @@
 - **Quality Assurance:** Unit tests are conducted, and code reviews are performed to maintain code quality and identify and fix any bugs or issues.
 
 ## Technologies Used
-- **Programming Language:** Ruby-on-Rails, PostgreSQL
+* ![Ruby](https://img.shields.io/badge/ruby-%23CC342D.svg?style=for-the-badge&logo=ruby&logoColor=white)
+* ![Rails](https://img.shields.io/badge/rails-%23CC0000.svg?style=for-the-badge&logo=ruby-on-rails&logoColor=white)
+* ![Postgresql](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+* ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
+* ![Love](https://ForTheBadge.com/images/badges/built-with-love.svg)
 - **APIs:** MapQuest Geocoding Api, Weather Api
+
+## Running On
+  - Rails 7.0.4
+  - Ruby 3.1.1
 
 ## Testing
 - **Framework:** RSpec 
 
+
 ## Getting Started
 To set up **Whether, Sweater** locally, follow the instructions below:
 
-- Fork & Clone the repository
-- Install the required dependencies using bundler:
+1. Fork & Clone the repository
+2. Install the required dependencies using bundler:
 ```
 bundle install
 ```
-- Set up the database by running the following commands:
+3. Set up the database by running the following commands:
 ```
 rails db:{drop,create,migrate}
 ```
 ### Configure API keys: 
-- Go to [Mapquest_API](https://developer.mapquest.com/documentation/geocoding-api/) to sign up for your api key.
+4. Go to [Mapquest_API](https://developer.mapquest.com/documentation/geocoding-api/) to sign up for your api key.
 
-- Go to [Weather_API](https://www.weatherapi.com/) to sign up for your api key.
+5. Go to [Weather_API](https://www.weatherapi.com/) to sign up for your api key.
 
-### Add figaro to gemfile
-```
-gem "figaro"
-```
-### Run
+6. Create application.yml file
 ```
 bundle exec figaro install
 ```
-This should create an application.yml file, which you can add your API keys in like this:
+7. Now add your API keys into the newly created application.yml file like this:
 ```
 WEATHER_API_KEY: <your_weather_api_key_here>
 MAPQUEST_API_KEY: <your_mapquest_api_key_here>
@@ -57,9 +62,9 @@ All tests should be passing!
 ## Usage
 Once you have completed the installation steps, you can use the endpoints built in this backend application to return the specified information to use for a front end application. 
 
-**Information sent:**<br>
+### **Information sent:**
 
-- WEATHER INFO:
+- **Weather info:**
   - a data attribute, under which all other attributes are present:
     - attributes, an object containing weather information
       - current_weather, holds current weather data:
