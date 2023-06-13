@@ -5,6 +5,7 @@ class Books
               :books_info,
               :id,
               :type
+              
   def initialize(location, forecast, books_found, books_info)
     @id ='null'
     @type = 'books'
