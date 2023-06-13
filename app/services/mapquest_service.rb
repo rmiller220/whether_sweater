@@ -19,5 +19,3 @@ class MapquestService
     end
   end
 end
-
-# https://www.mapquestapi.com/geocoding/v1/address?key={{mapquest_api_key}}&location=Washington,DC
