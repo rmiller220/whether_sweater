@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Mapquest Service' do
+RSpec.describe 'Mapquest Facade' do
   describe 'instance methods' do
     it 'returns lat and long for a given location' do
       search = ("denver,co")
