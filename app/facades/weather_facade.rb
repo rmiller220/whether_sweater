@@ -5,7 +5,7 @@ class WeatherFacade
     data = json[:results][0][:locations][0][:latLng]
     city_coords = Mapquest.new(data)
     weather_data = WeatherService.new.get_weather_data(city_coords.lat, city_coords.lon)
-
+    
     current_weather = 
     {
       last_updated: weather_data[:current][:last_updated],
