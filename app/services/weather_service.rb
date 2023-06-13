@@ -18,5 +18,3 @@ class WeatherService
       end
     end
 end
-
-#http://api.weatherapi.com/v1/forecast.json?key={{weather_api_key}}&q=39.74001,-104.99202&days=5
