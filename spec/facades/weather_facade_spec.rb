@@ -31,7 +31,7 @@ RSpec.describe 'Weather Facade' do
     it 'returns forecast weather for a given location' do
       location = "denver,co"
       weather_data = WeatherFacade.new.get_weather_data(location)
-
+require 'pry'; binding.pry
       expect(weather_data.daily_weather).to be_an(Array)
       expect(weather_data.daily_weather.count).to eq(5)
       weather_data.daily_weather.each do |day|
